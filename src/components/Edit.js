@@ -1,0 +1,93 @@
+import React from 'react';
+import axios from 'axios';
+
+class Edit extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      date: '',
+      length_of_stay:''
+    }
+  }
+
+  componentDidMount() {
+      axios.get('http://localhost:4500/trips/'+this.props.match.params.id)
+          .then(response => {
+              this.setState({
+                name: response.data.name,
+                date: response.data.date,
+                length_of_stay: response.data.length_of_stay });
+          })
+          .catch( (error)=>
+              console.log(error)
+          )
+    }
+
+    // ==============
+    // HANDLERS
+    // ==============
+    // handles form change
+    handleChange = (e) => {
+      this.setState({[e.target.id] : e.target.value})
+    }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const obj = {
+      name: this.state.name,
+      date: this.state.date,
+      length_of_stay: this.state.length_of_stay
+    };
+    console.log(obj);
+    axios.put('http://localhost:4500/trips/'+this.props.match.params.id, obj)
+        .then(res => {console.log(res.data);
+        this.props.history.push('/main');});
+  }
+
+  render() {
+    return (
+        <div style={{ marginTop: 10 }}>
+            <h3 align="center">Update Trip</h3>
+            <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                    <label>Trip Name:  </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={this.state.name}
+                      id="name"
+                      onChange={this.handleChange}
+                      />
+                </div>
+                <div className="form-group">
+                    <label>Date of Travel: </label>
+                    <input type="text"
+                      className="form-control"
+                      value={this.state.date}
+                      id="date"
+                      onChange={this.handleChange}
+                      />
+                </div>
+                <div className="form-group">
+                    <label>Length Of Stay: </label>
+                    <input type="text"
+                      className="form-control"
+                      value={this.state.length_of_stay}
+                      id="length_of_stay"
+                      onChange={this.handleChange}
+                      />
+                </div>
+                <div className="form-group">
+                    <input type="submit"
+                      value="Update Trips"
+                      className="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    )
+  }
+}
+
+export default Edit

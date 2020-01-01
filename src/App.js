@@ -1,36 +1,49 @@
 import React from 'react';
-
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Forms from './components/Forms.js';
 import Login from './components/Login.js';
+import Edit from './components/Edit.js';
 import Header from './components/Header.js';
 import Main from './components/Main.js';
 
-import Trip from './components/Trip.js';
 
 import Navigation from './components/Navigation.js'
 
 class App extends React.Component {
   render(){
     return (
+
       <Router>
-      <div className="App">
-            <Header />
-            <Navigation/>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/main">Trips</Link>
-              <Link to="/form">Create Trips</Link>
-            </nav>
-
-            <Route path="/login" exact component={Login} />
-            <Route path="/main" exact component={Main} />
-            <Route path="/form" exact component={Forms} />
-
-
+      <Header />
+  <div className="container">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link to={'/'} className="navbar-brand">Family Travel</Link>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
+        <li className="nav-item">
+            <Link to={'/'} className="nav-link">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/login'} className="nav-link">Login</Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/form'} className="nav-link">Create Trips</Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/main'} className="nav-link">Trips</Link>
+          </li>
+        </ul>
       </div>
-      </Router>
+    </nav>
+    <Switch>
+        <Route path="/login" exact component={Login} />
+        <Route exact path='/form' component={ Forms } />
+        <Route path='/main' component={ Main } />
+        <Route exact path='/edit/:id' component={ Edit } />
+    </Switch>
+  </div>
+</Router>
     );
   }
 

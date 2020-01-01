@@ -3,6 +3,22 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 class Login extends React.Component {
+
+
+  render () {
+   return (
+     <>
+     <h3>Login components</h3>
+        <Button>
+        <a href="http://localhost:4500/auth/google">Google+</a>
+        </Button>
+      </>
+   )}
+}
+export default Login
+
+
+///////////////////GRAVEYARD//////////////////
 //
 // constructor(){
 //   super()
@@ -39,15 +55,3 @@ class Login extends React.Component {
   //   axios.post('http://localhost:4500/auth/google',data)
 	// 	.then(res => console.log(res))
   // }
-
-  render () {
-   return (
-     <>
-     <h3>Login components</h3>
-        <Button>
-        <a href="http://localhost:4500/auth/google">Google+</a>
-        </Button>
-      </>
-   )}
-}
-export default Login

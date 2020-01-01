@@ -15,7 +15,8 @@ render(){
         <Nav.Link  href="http://localhost:4500/auth/google"> Login with Google+ </Nav.Link>
         </Button>
       </Nav>
-    
+      <Nav.Link onClick={() => {
+      }}>Trips</Nav.Link>
     </Navbar.Collapse>
   </Navbar>
 }

@@ -6,8 +6,8 @@ class Forms extends React.Component {
   // ==============
   // STATE
   // ==============
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       date: '',
@@ -26,24 +26,26 @@ class Forms extends React.Component {
 
   // handles submit
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
     const data = {
   		name: this.state.name,
   		date: this.state.date,
       length_of_stay: this.state.length_of_stay
   	};
       axios.post('http://localhost:4500/trips',data)
-    	.then(res => console.log(res))
-  }
+    	.then(res => {console.log(res);
+        this.props.history.push('/main');
+      })
 
-  componentDidMount(){
-      this.setState({
-          name: this.props.name,
-          date: this.props.date,
-          length_of_stay: this.props.length_of_stay,
-          id: this.props.id
+      this.setState ({
+        name: '',
+        date: '',
+        length_of_stay: ''
       })
   }
+
+
 
 
   render () {
