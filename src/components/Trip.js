@@ -4,11 +4,13 @@ class Trip extends React.Component {
 
 render () {
 return <>
-    <div>
-    <p>Trip Name:<span>{this.props.tripsData.name}</span></p>
-    <p><span>Trip Date:</span><span>{this.props.tripsData.date}</span></p>
-    <p><span>Trip Length of Stay:</span><span>{this.props.tripsData.length_of_stay}</span></p>
-    </div>
+    <tr>
+    <td>{this.props.tripsData.name}</td>
+    <td>{this.props.tripsData.date}</td>
+    <td>{this.props.tripsData.length_of_stay}</td>
+    <td><button>Edit</button></td>
+    <td><button>Delete</button></td>
+    </tr>
   </>
 }
 
