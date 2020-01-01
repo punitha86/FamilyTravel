@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import axios from 'axios';
 class Forms extends React.Component {
   // ==============
   // STATE
@@ -27,6 +27,13 @@ class Forms extends React.Component {
   // handles submit
   handleSubmit = (e) => {
     e.preventDefault()
+    const data = {
+  		name: this.state.name,
+  		date: this.state.date,
+      length_of_stay: this.state.length_of_stay
+  	};
+      axios.post('http://localhost:4500/trips',data)
+    	.then(res => console.log(res))
   }
 
   componentDidMount(){
@@ -38,23 +45,24 @@ class Forms extends React.Component {
       })
   }
 
+
   render () {
    return (
      <div className="container">
-    <Form >
+    <Form onSubmit={this.handleSubmit}>
       <Form.Group >
         <Form.Label>Trip</Form.Label>
-        <Form.Control type="text" placeholder="Your Habit" id= "habit" value={this.state.name} onChange={this.handleChange}/>
+        <Form.Control type="text" placeholder="Your Habit" id= "name" value={this.state.name} onChange={this.handleChange}/>
       </Form.Group>
 ​
       <Form.Group>
-        <Form.Label>Description</Form.Label>
-        <Form.Control type="text" placeholder="Describe your habit" id= "description" value={this.state.date} onChange={this.handleChange}/>
+        <Form.Label>Date</Form.Label>
+        <Form.Control type="date" placeholder="Describe your habit" id= "date" value={this.state.date} onChange={this.handleChange}/>
       </Form.Group>
 ​
       <Form.Group>
-        <Form.Label>Comments</Form.Label>
-        <Form.Control as="textarea" placeholder="Comments about your habit!" id= "comments" value={this.state.length_of_stay} onChange={this.handleChange}/>
+        <Form.Label>Length of Stay</Form.Label>
+        <Form.Control type="number" placeholder="Number of Days" id= "length_of_stay" value={this.state.length_of_stay} onChange={this.handleChange}/>
       </Form.Group>
 ​
       <Button variant="primary" type="submit">
