@@ -54,12 +54,12 @@ class Forms extends React.Component {
     <Form onSubmit={this.handleSubmit}>
       <Form.Group >
         <Form.Label>Trip</Form.Label>
-        <Form.Control type="text" placeholder="Your Habit" id= "name" value={this.state.name} onChange={this.handleChange}/>
+        <Form.Control type="text" placeholder="Name your trip" id= "name" value={this.state.name} onChange={this.handleChange}/>
       </Form.Group>
 ​
       <Form.Group>
         <Form.Label>Date</Form.Label>
-        <Form.Control type="date" placeholder="Describe your habit" id= "date" value={this.state.date} onChange={this.handleChange}/>
+        <Form.Control type="date" placeholder="Date of Trip" id= "date" value={this.state.date} onChange={this.handleChange}/>
       </Form.Group>
 ​
       <Form.Group>
