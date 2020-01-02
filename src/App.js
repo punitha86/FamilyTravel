@@ -8,21 +8,39 @@ import Edit from './components/Edit.js';
 import Header from './components/Header.js';
 import Main from './components/Main.js';
 import {withCookies} from 'react-cookie';
+import axios from 'axios';
 
-import {CookiesProvider} from "react-cookie";
 class App extends React.Component {
-constructor(props){
-  super(props)
+constructor(){
+  super()
   this.state={
-    user_id:''
+    user_id:'',
+    loggedIn: false,
+			user: null
   }
 }
 componentDidMount() {
-    var query = queryString.parse(window.location.search);
-    console.log(query);
-    //user_id=query;
-    this.setState({user_id:query})
-    console.log(this.state.user_id);
+    // var query = queryString.parse(window.location.search);
+    // console.log(query);
+    // //user_id=query;
+    // this.setState({user_id:query})
+    // console.log(this.state.user_id);
+
+    axios.get('http://localhost:4500/auth/user').then(response => {
+			console.log(response.data)
+			if (!!response.data.user) {
+				console.log('THERE IS A USER')
+				this.setState({
+					loggedIn: true,
+					user: response.data.user
+				})
+			} else {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
+		})
 }
 
   render(){
@@ -32,7 +50,6 @@ componentDidMount() {
       <Router>
       <Header />
       <div className="container">
-
 <p>Welcome!{this.state.user_id.user}</p>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link to={'/'} className="navbar-brand">Family Travel</Link>
@@ -79,4 +96,4 @@ componentDidMount() {
 
 }
 
-export default withCookies(App);
+export default App;
