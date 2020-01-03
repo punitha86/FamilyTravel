@@ -38,7 +38,7 @@ class Forms extends React.Component {
       user_id: this.props.user.local.username,
       length_of_stay: this.state.length_of_stay
   	};
-      axios.post(`${baseUrl}/trip`s,data)
+      axios.post(`${baseUrl}/trips`,data)
     	.then(res => {console.log(res);
         this.props.history.push('/main');
       })
