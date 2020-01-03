@@ -3,12 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-let baseUrl = '';
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:4500'
-} else {
+// let baseUrl = '';
+// if (process.env.NODE_ENV === 'development') {
+//   baseUrl = 'http://localhost:4500'
+// } else {
   baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
-}
+// }
 
 const Trip = props => (
     <tr>

@@ -36,7 +36,7 @@ class Login extends React.Component {
     googleSignIn = ()=>{
       axios.get(`${baseUrl}/auth/google`)
       .then(response => {
-        console.log("Inside signin",response);
+        console.log("Inside signin",response.data);
           this.setState({
           user:response.data
       })
@@ -73,7 +73,7 @@ class Login extends React.Component {
   					</form>
 
   						<Button variant="info" onClick={this.googleSignIn}>Login with Google+</Button>
-              <a href="https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com/auth/google">Test
+              <a href="http://familytravel.herokuapp.com/auth/google">Test
   					</a>
   				</div>
   			)
