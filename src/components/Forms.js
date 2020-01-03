@@ -2,6 +2,9 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {
+  withRouter
+} from 'react-router-dom';
 class Forms extends React.Component {
   // ==============
   // STATE
@@ -31,6 +34,7 @@ class Forms extends React.Component {
     const data = {
   		name: this.state.name,
   		date: this.state.date,
+      user_id: this.props.user.local.username,
       length_of_stay: this.state.length_of_stay
   	};
       axios.post('http://localhost:4500/trips',data)
@@ -76,4 +80,4 @@ class Forms extends React.Component {
 
    )}
 }
-export default Forms
+export default withRouter(Forms)

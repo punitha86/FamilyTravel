@@ -1,19 +1,80 @@
 import React from 'react';
-
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
 class Login extends React.Component {
 
+  constructor() {
+  		super()
+  		this.state = {
+  			username: '',
+  			password: '',
+  			redirectTo: null
+  		}
+  	}
 
-  render () {
-   return (
-     <>
-     <h3>Login components</h3>
-        <Button>
-        <a href="http://localhost:4500/auth/google">Google+</a>
-        </Button>
-      </>
-   )}
+  	handleChange= (event)=> {
+  		this.setState({
+  			[event.target.name]: event.target.value
+  		})
+  	}
+
+  	handleSubmit=(event)=> {
+  		event.preventDefault()
+  		console.log('handleSubmit')
+  		this.props._login(this.state.username, this.state.password)
+  		this.setState({
+  			redirectTo: '/'
+  		})
+  	}
+    googleSignIn = ()=>{
+      axios.get('http://localhost:4500/auth/google')
+      .then(response => {
+        console.log("Inside signin",response);
+          this.setState({
+          user:response.data
+      })
+    })
+      .catch( (error)=>
+          console.log(error)
+      )
+    }
+
+
+  	render() {
+  		if (this.state.redirectTo) {
+  			return <Redirect to={{ pathname: this.state.redirectTo }} />
+  		} else {
+  			return (
+  				<div className="LoginForm">
+  					<h1>Login form</h1>
+  					<form>
+  						<label htmlFor="username">Username: </label>
+  						<input
+  							type="text"
+  							name="username"
+  							value={this.state.username}
+  							onChange={this.handleChange}
+  						/>
+  						<label htmlFor="password">Password: </label>
+  						<input
+  							type="password"
+  							name="password"
+  							value={this.state.password}
+  							onChange={this.handleChange}
+  						/>
+  						<button onClick={this.handleSubmit}>Login</button>
+  					</form>
+
+  						<Button variant="info" onClick={this.googleSignIn}>Login with Google+</Button>
+              <a href="http://localhost:4500/auth/google">Test
+  					</a>
+  				</div>
+  			)
+  		}
+  	}
+
 }
 export default Login
 
@@ -55,3 +116,13 @@ export default Login
   //   axios.post('http://localhost:4500/auth/google',data)
 	// 	.then(res => console.log(res))
   // }
+
+  /////render () {
+   // return (
+   //   <>
+   //   <h3>Login components</h3>
+   //      <Button>
+   //      <a href="http://localhost:4500/auth/google">Google+</a>
+   //      </Button>
+   //    </>
+   // )}
