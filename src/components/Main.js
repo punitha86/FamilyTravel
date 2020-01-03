@@ -3,6 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+let baseUrl = '';
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = 'http://localhost:4500'
+} else {
+  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+}
 
 const Trip = props => (
     <tr>
@@ -25,7 +31,7 @@ class Main extends React.Component {
     }
   }
   fetchTrips = () => {
-    axios.get('http://localhost:4500/trips')
+    axios.get(`${baseUrl}/trips`)
     .then(response => {
         this.setState({tripsData: response.data});
     })
@@ -43,7 +49,7 @@ class Main extends React.Component {
   // }
   handleDelete = (id) => {
     console.log("Delete triggered");
-      axios.delete('http://localhost:4500/trips/'+id)
+      axios.delete(`${baseUrl}/trips`+id)
       .then(res => {console.log(res);this.fetchTrips();
       });
 

@@ -18,7 +18,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://localhost:4500'
 } else {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/http://habit-tracker-api-test.herokuapp.com/api';
+  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 }
 
 
@@ -99,7 +99,7 @@ componentDidMount() {
     // this.setState({user_id:query})
     // console.log(this.state.user_id);
   //console.log(window);
-    axios.get('http://localhost:4500/auth/user').then(response => {
+    axios.get(`${baseUrl}/auth/user`).then(response => {
 			console.log(response.data)
 
 			if (!!response.data.user) {
@@ -120,7 +120,7 @@ componentDidMount() {
 _logout=(event)=> {
   event.preventDefault()
   console.log('logging out')
-  axios.post('http://localhost:4500/auth/logout').then(response => {
+  axios.post(`${baseUrl}/auth/logout`).then(response => {
     console.log(response.data)
     if (response.status === 200) {
       this.setState({
@@ -133,7 +133,7 @@ _logout=(event)=> {
 
 _login=(username, password)=>{
   axios
-    .post('http://localhost:4500/auth/login', {
+    .post(`${baseUrl}/auth/login`, {
       username,
       password
     })
