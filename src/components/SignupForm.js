@@ -20,7 +20,7 @@ class SignupForm extends Component {
 	handleSubmit=(event)=> {
 		event.preventDefault();
 		axios
-			.post('http://localhost:4500/auth/signup', {
+			.post('http://familytravel.herokuapp.com/auth/signup', {
 				username: this.state.username,
 				password: this.state.password
 			})
