@@ -7,7 +7,7 @@ import axios from 'axios';
 // if (process.env.NODE_ENV === 'development') {
 //   baseUrl = 'http://localhost:4500'
 // } else {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+  let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 // }
 
 const Trip = props => (
