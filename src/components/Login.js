@@ -3,11 +3,11 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 let baseUrl = '';
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:4500'
-} else {
+// if (process.env.NODE_ENV === 'development') {
+//   baseUrl = 'http://localhost:4500'
+// } else {
   baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
-}
+// }
 class Login extends React.Component {
 
   constructor() {
