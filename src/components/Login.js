@@ -2,7 +2,12 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-
+let baseUrl = '';
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = 'http://localhost:4500'
+} else {
+  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+}
 class Login extends React.Component {
 
   constructor() {
@@ -68,7 +73,7 @@ class Login extends React.Component {
   					</form>
 
   						<Button variant="info" onClick={this.googleSignIn}>Login with Google+</Button>
-              <a href=`${baseUrl}/auth/google`>Test
+              <a href="https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com/auth/google">Test
   					</a>
   				</div>
   			)
