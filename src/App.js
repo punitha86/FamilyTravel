@@ -58,12 +58,6 @@ const DisplayLinks = props => {
 							Home
 						</Link>
 					</li>
-          <li className="nav-item">
-            <Link to={'/form'} className="nav-link">Create Trips</Link>
-          </li>
-          <li className="nav-item">
-            <Link to={'/main'} className="nav-link">Trips</Link>
-          </li>
 					<li className="nav-item">
 						<Link to="/login" className="nav-link">
 							login
@@ -138,7 +132,7 @@ _login=(username, password)=>{
       password
     })
     .then(response => {
-      console.log(response)
+      console.log(response.data.user)
       if (response.status === 200) {
         // update the state
         this.setState({
@@ -157,6 +151,20 @@ _login=(username, password)=>{
       {/* LINKS to our different 'pages' */}
 				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
       <div className="container">
+
+        <Switch>
+            <Route path="/login" exact render={() =>
+						<Login
+							_login={this._login}
+							_googleSignin={this._googleSignin}
+						/>} />
+            <Route exact path="/" render={() => <Home user={this.state.user} />} />
+            <Route exact path="/signup" component={SignupForm} />
+            <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
+            <Route path='/main' component={ Main } />
+            <Route exact path='/edit/:id' component={ Edit } />
+        </Switch>
+      </div>
       {/*  <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link to={'/'} className="navbar-brand">Family Travel</Link>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -189,20 +197,8 @@ _login=(username, password)=>{
             </ul>
           </div>
         </nav>*/}
-        <Switch>
-            <Route path="/login" exact render={() =>
-						<Login
-							_login={this._login}
-							_googleSignin={this._googleSignin}
-						/>} />
-            <Route exact path="/" render={() => <Home user={this.state.user} />} />
-            <Route exact path="/signup" component={SignupForm} />
-            <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
-            <Route path='/main' component={ Main } />
-            <Route exact path='/edit/:id' component={ Edit } />
-        </Switch>
-      </div>
       </Router>
+
     );
   }
 

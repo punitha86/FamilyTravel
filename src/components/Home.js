@@ -5,13 +5,13 @@ const Home = props => {
 
 		return (
 			<div className="Home">
-				<p>Current User seems to be null:</p>
+				<p>Current User:</p>
 				<code>
-					{JSON.stringify(props)}
+					{JSON.stringify(props.user.local.username)}
 				</code>
 			</div>
 		)
-	
+
 }
 
 export default Home
