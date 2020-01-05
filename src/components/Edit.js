@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+let baseUrl = 'http://localhost:4500'
+
+
 class Edit extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,7 @@ class Edit extends React.Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4500/trips/'+this.props.match.params.id)
+      axios.get(`${baseUrl}/trips/`+this.props.match.params.id)
           .then(response => {
               this.setState({
                 name: response.data.name,
@@ -41,7 +44,7 @@ class Edit extends React.Component {
       length_of_stay: this.state.length_of_stay
     };
     console.log(obj);
-    axios.put('http://localhost:4500/trips/'+this.props.match.params.id, obj)
+    axios.put(`${baseUrl}/trips/`+this.props.match.params.id, obj)
         .then(res => {console.log(res.data);
         this.props.history.push('/main');});
   }

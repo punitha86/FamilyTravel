@@ -1,5 +1,5 @@
 import React from 'react';
-import cookie from 'react-cookie';
+import cookies from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Forms from './components/Forms.js';
@@ -93,11 +93,14 @@ componentDidMount() {
     // this.setState({user_id:query})
     // console.log(this.state.user_id);
   //console.log(window);
+  //////spent 3 days finding this line......./////////////////////
+  ///Thank you GOD!!!!!///////
+    axios.defaults.withCredentials = true;
+    ////////////////////////////////////////
+    ////////////////////////////////////////
     axios.get(`${baseUrl}/auth/user`).then(response => {
-			console.log(response.data)
-
-			if (!!response.data.user) {
-				console.log('THERE IS A USER')
+			if (response.status===200) {
+				console.log('THERE IS A USER',response.data.user)
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -143,8 +146,8 @@ _login=(username, password)=>{
     })
 }
   render(){
-    //const {cookies} = this.props;
-    //console.log(this.props.cookies);
+    // const {cookies} = this.props;
+    // console.log(this.props.cookies);
     return (
       <Router>
       <Header user={this.state.user} />
@@ -156,7 +159,6 @@ _login=(username, password)=>{
             <Route path="/login" exact render={() =>
 						<Login
 							_login={this._login}
-							_googleSignin={this._googleSignin}
 						/>} />
             <Route exact path="/" render={() => <Home user={this.state.user} />} />
             <Route exact path="/signup" component={SignupForm} />

@@ -5,7 +5,8 @@ import axios from 'axios';
 import {
   withRouter
 } from 'react-router-dom';
-let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+//let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+let baseUrl = 'http://localhost:4500'
 class Forms extends React.Component {
   // ==============
   // STATE
@@ -31,13 +32,14 @@ class Forms extends React.Component {
   // handles submit
   handleSubmit = (e) => {
     e.preventDefault();
-
+ let temp_username= (this.props.user.firstName)?this.props.user.firstName:this.props.user.local.username;
     const data = {
   		name: this.state.name,
   		date: this.state.date,
-      user_id: this.props.user.local.username,
+      user_id: temp_username,
       length_of_stay: this.state.length_of_stay
   	};
+    console.log("inside handle submit in forms");
       axios.post(`${baseUrl}/trips`,data)
     	.then(res => {console.log(res);
         this.props.history.push('/main');

@@ -7,8 +7,9 @@ import axios from 'axios';
 // if (process.env.NODE_ENV === 'development') {
 //   baseUrl = 'http://localhost:4500'
 // } else {
-  let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+  //let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 // }
+let baseUrl = 'http://localhost:4500';
 
 const Trip = props => (
     <tr>
@@ -49,7 +50,7 @@ class Main extends React.Component {
   // }
   handleDelete = (id) => {
     console.log("Delete triggered");
-      axios.delete(`${baseUrl}/trips`+id)
+      axios.delete(`${baseUrl}/trips/`+id)
       .then(res => {console.log(res);this.fetchTrips();
       });
 
