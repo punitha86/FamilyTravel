@@ -22,8 +22,6 @@ if (process.env.NODE_ENV === 'development') {
   baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 }
 
-
-
 ///////////header links based on logged in status
 
 const DisplayLinks = props => {
@@ -52,22 +50,22 @@ const DisplayLinks = props => {
 		)
 	} else {
 		return(
-<>
-<Nav variant="tabs" defaultActiveKey="/home">
-  <Nav.Item>
-    <Nav.Link href="/">Home</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link><Link to="/login" >
-      Login
-    </Link></Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link><Link to="/signup">
-      Sign Up
-    </Link></Nav.Link>
-  </Nav.Item>
-</Nav>
+      <>
+        <Nav variant="tabs" defaultActiveKey="/home">
+          <Nav.Item>
+            <Nav.Link href="/">Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link><Link to="/login" >
+              Login
+            </Link></Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link><Link to="/signup">
+              Sign Up
+            </Link></Nav.Link>
+          </Nav.Item>
+        </Nav>
       </>
 		)
 	}
