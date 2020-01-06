@@ -60,9 +60,9 @@ class Login extends React.Component {
   						<button onClick={this.handleSubmit}>Login</button>
   					</form>
 
-  						<Button variant="info" >
-              <a href="http://localhost:4500/auth/google">Login with Google+
-  					</a></Button>
+  						<a href="http://localhost:4500/auth/google"><Button variant="primary" >
+              Login with Google+
+  					</Button></a>
   				</div>
   			)
   		}

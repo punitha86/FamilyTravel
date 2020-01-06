@@ -6,6 +6,8 @@ import Forms from './components/Forms.js';
 import Login from './components/Login.js';
 import Edit from './components/Edit.js';
 import Header from './components/Header.js';
+import Image_upload from './components/Image_upload.js';
+
 import Main from './components/Main.js';
 import Home from './components/Home.js';
 import { Redirect } from 'react-router-dom';
@@ -163,6 +165,7 @@ _login=(username, password)=>{
             <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
             <Route path='/main' component={ ()=> <Main user={this.state.user} />} />
             <Route exact path='/edit/:id' component={ Edit } />
+            <Route exact path='/image' component={ Image_upload } />
         </Switch>
       </div>
       {/*  <nav className="navbar navbar-expand-lg navbar-light bg-light">
