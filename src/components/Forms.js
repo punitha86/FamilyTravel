@@ -17,7 +17,9 @@ class Forms extends React.Component {
       name: '',
       date: '',
       length_of_stay: '',
-      places_to_visit: ''
+      places_to_visit: '',
+      packName:'',
+      things_to_pack:[{packName:''}]
     }
   }
 
@@ -34,12 +36,14 @@ class Forms extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
  let temp_username= (this.props.user.firstName)?this.props.user.firstName:this.props.user.local.username;
+ console.log("things to pack",this.state.things_to_pack);
     const data = {
   		name: this.state.name,
   		date: this.state.date,
       user_id: temp_username,
       length_of_stay: this.state.length_of_stay,
-      places_to_visit:this.state.places_to_visit
+      places_to_visit:this.state.places_to_visit,
+      things_to_pack:this.state.things_to_pack
   	};
     console.log("inside handle submit in forms");
       axios.post(`${baseUrl}/trips`,data)
@@ -56,7 +60,25 @@ class Forms extends React.Component {
   }
 
 
+  handleAddPacking = () => {
+    this.setState({
+      things_to_pack: this.state.things_to_pack.concat([{ packName: '' }])
+    });
+  };
 
+  handleRemovePacking = idx => () => {
+    this.setState({
+      things_to_pack: this.state.things_to_pack.filter((s, sidx) => idx !== sidx)
+    });
+  };
+  handlePackingChange = idx => evt => {
+  const newPacks = this.state.things_to_pack.map((packing, sidx) => {
+    if (idx !== sidx) return packing;
+    return { ...packing, packName: evt.target.value };
+  });
+
+  this.setState({ things_to_pack: newPacks });
+};
 
   render () {
    return (
@@ -66,7 +88,31 @@ class Forms extends React.Component {
         <Form.Label>Trip</Form.Label>
         <Form.Control type="text" placeholder="Name your trip" id= "name" value={this.state.name} onChange={this.handleChange}/>
       </Form.Group>
-​
+​     <Form.Group >
+        {this.state.things_to_pack.map((thing, idx) => (
+          <>
+            <Form.Control type="text"
+              placeholder="Things to pack"
+              value={thing.packName}
+              onChange={this.handlePackingChange(idx)}
+            />
+            <button
+              type="button"
+              onClick={this.handleRemovePacking(idx)}
+              className="small"
+            > x
+            </button>
+        </>
+        ))}
+        <button
+         type="button"
+         onClick={this.handleAddPacking}
+         className="small"
+       >
+         Add Things to pack
+       </button>
+       </Form.Group>
+
       <Form.Group>
         <Form.Label>Date</Form.Label>
         <Form.Control type="date" placeholder="Date of Trip" id= "date" value={this.state.date} onChange={this.handleChange}/>
