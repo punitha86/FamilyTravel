@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: grey;
 }
 
 code {
@@ -14,12 +13,16 @@ code {
 }
 
 #jumboTitle {
-    text-align: center;
+    text-align: right;
+    padding-right: 10vw;
+    padding-top: 5vh;
+    width:100vw;
+    height:30vh;
     font-size: 70px;
+    color:white;
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
-    text-shadow: 1px 1px white;
-    background-image: url('https://images.pexels.com/photos/2767767/pexels-photo-2767767.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+    background-image: url('https://www.itl.cat/pngfile/big/209-2095289_laguna-beach-california-wallpaper-high-resolution-travel-images.jpg');
     background-size:cover;
 
 }

@@ -33,18 +33,6 @@ class Login extends React.Component {
   			redirectTo: '/'
   		})
   	}
-    googleSignIn = ()=>{
-      axios.get(`${baseUrl}/auth/google`)
-      .then(response => {
-        console.log("Inside signin",typeof(response));
-          this.setState({
-          user:response.data
-      })
-    })
-      .catch( (error)=>
-          console.log(error)
-      )
-    }
 
 
   	render() {
@@ -72,9 +60,9 @@ class Login extends React.Component {
   						<button onClick={this.handleSubmit}>Login</button>
   					</form>
 
-  						<Button variant="info" onClick={this.googleSignIn}>Login with Google+</Button>
-              <a href="http://localhost:4500/auth/google">Test
-  					</a>
+  						<Button variant="info" >
+              <a href="http://localhost:4500/auth/google">Login with Google+
+  					</a></Button>
   				</div>
   			)
   		}

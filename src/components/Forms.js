@@ -6,7 +6,7 @@ import {
   withRouter
 } from 'react-router-dom';
 //let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
-let baseUrl = 'http://localhost:4500'
+let baseUrl = 'http://localhost:4500';
 class Forms extends React.Component {
   // ==============
   // STATE
@@ -16,7 +16,8 @@ class Forms extends React.Component {
     this.state = {
       name: '',
       date: '',
-      length_of_stay: ''
+      length_of_stay: '',
+      places_to_visit: ''
     }
   }
 
@@ -37,7 +38,8 @@ class Forms extends React.Component {
   		name: this.state.name,
   		date: this.state.date,
       user_id: temp_username,
-      length_of_stay: this.state.length_of_stay
+      length_of_stay: this.state.length_of_stay,
+      places_to_visit:this.state.places_to_visit
   	};
     console.log("inside handle submit in forms");
       axios.post(`${baseUrl}/trips`,data)
@@ -48,7 +50,8 @@ class Forms extends React.Component {
       this.setState ({
         name: '',
         date: '',
-        length_of_stay: ''
+        length_of_stay: '',
+        places_to_visit: ''
       })
   }
 
@@ -74,6 +77,10 @@ class Forms extends React.Component {
         <Form.Control type="number" placeholder="Number of Days" id= "length_of_stay" value={this.state.length_of_stay} onChange={this.handleChange}/>
       </Form.Group>
 ​
+      <Form.Group>
+        <Form.Label>Places To Visit</Form.Label>
+        <Form.Control type="text" placeholder="Places to visit" id= "places_to_visit" value={this.state.places_to_visit} onChange={this.handleChange}/>
+      </Form.Group>
       <Button variant="primary" type="submit">
         Submit
       </Button>

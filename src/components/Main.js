@@ -2,20 +2,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 // let baseUrl = '';
 // if (process.env.NODE_ENV === 'development') {
 //   baseUrl = 'http://localhost:4500'
 // } else {
-  //let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+  //
 // }
 let baseUrl = 'http://localhost:4500';
+//let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 
 const Trip = props => (
     <tr>
         <td>{props.tripsData.name}</td>
         <td>{props.tripsData.date}</td>
         <td>{props.tripsData.length_of_stay}</td>
+        <td>{props.tripsData.places_to_visit}</td>
         <td>
             <Link to={"/edit/"+props.tripsData._id}>Edit</Link>
             <p onClick={() =>
@@ -31,8 +34,12 @@ class Main extends React.Component {
       tripsData: []
     }
   }
+
+
   fetchTrips = () => {
-    axios.get(`${baseUrl}/trips`)
+  console.log(this.props.user);
+  let temp_username= (this.props.user.firstName)?this.props.user.firstName:this.props.user.local.username;
+    axios.get(`${baseUrl}/trips/user/`+temp_username)
     .then(response => {
         this.setState({tripsData: response.data});
     })
@@ -57,7 +64,9 @@ class Main extends React.Component {
   }
 
   componentDidMount(){
+    if(this.props.user!==null)
     this.fetchTrips()
+
 
 }
 
@@ -77,7 +86,7 @@ tripList() {
 // ==============
 render () {
   // return <h1>Main</h1>
-
+if(this.props.user!==null)
   return (
        <div>
            <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -86,6 +95,7 @@ render () {
                        <th>Name of the Trip</th>
                        <th>Date</th>
                        <th>Length Of Trip</th>
+                       <th>Places Of Trip</th>
                        <th>Actions</th>
                    </tr>
                </thead>
@@ -95,7 +105,12 @@ render () {
            </table>
        </div>
    )
- }
+   else {
+     console.log("redirecting");
+    return <Redirect to={{ pathname: '/' }} />
+   }
+   }
+
 
 }
 export default Main;

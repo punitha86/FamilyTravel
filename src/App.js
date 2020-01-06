@@ -8,8 +8,9 @@ import Edit from './components/Edit.js';
 import Header from './components/Header.js';
 import Main from './components/Main.js';
 import Home from './components/Home.js';
-
+import { Redirect } from 'react-router-dom';
 import SignupForm from './components/SignupForm.js';
+import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 // =============================
 // COMPONENT CLASS
@@ -28,48 +29,46 @@ if (process.env.NODE_ENV === 'development') {
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-          <li className="nav-item">
-            <Link to={'/form'} className="nav-link">Create Trips</Link>
-          </li>
-          <li className="nav-item">
-            <Link to={'/main'} className="nav-link">Trips</Link>
-          </li>
-					<li>
-						<Link to="#" className="nav-link" onClick={props._logout}>
-							Logout
-						</Link>
-					</li>
-				</ul>
-			</nav>
+      <>
+      <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link href="/">Home</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link><Link to={'/form'} >
+            Create Trips
+          </Link></Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link><Link to={'/main'}>Trips</Link></Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link><Link to={'/login'} onClick={props._logout}>
+            Logout
+          </Link></Nav.Link>
+        </Nav.Item>
+      </Nav>
+      </>
 		)
 	} else {
-		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/login" className="nav-link">
-							login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/signup" className="nav-link">
-							sign up
-						</Link>
-					</li>
-				</ul>
-			</nav>
+		return(
+<>
+<Nav variant="tabs" defaultActiveKey="/home">
+  <Nav.Item>
+    <Nav.Link href="/">Home</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link><Link to="/login" >
+      Login
+    </Link></Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link><Link to="/signup">
+      Sign Up
+    </Link></Nav.Link>
+  </Nav.Item>
+</Nav>
+      </>
 		)
 	}
 }
@@ -99,7 +98,7 @@ componentDidMount() {
     ////////////////////////////////////////
     ////////////////////////////////////////
     axios.get(`${baseUrl}/auth/user`).then(response => {
-			if (response.status===200) {
+			if (response.data.user) {
 				console.log('THERE IS A USER',response.data.user)
 				this.setState({
 					loggedIn: true,
@@ -118,12 +117,13 @@ _logout=(event)=> {
   event.preventDefault()
   console.log('logging out')
   axios.post(`${baseUrl}/auth/logout`).then(response => {
-    console.log(response.data)
+    console.log(response.data,response.status)
     if (response.status === 200) {
       this.setState({
         loggedIn: false,
-        user: null
-      })
+        user: null,
+        redirectTo: '/login'
+      });
     }
   })
 }
@@ -163,7 +163,7 @@ _login=(username, password)=>{
             <Route exact path="/" render={() => <Home user={this.state.user} />} />
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
-            <Route path='/main' component={ Main } />
+            <Route path='/main' component={ ()=> <Main user={this.state.user} />} />
             <Route exact path='/edit/:id' component={ Edit } />
         </Switch>
       </div>

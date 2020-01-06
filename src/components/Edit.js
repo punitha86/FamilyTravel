@@ -11,7 +11,8 @@ class Edit extends React.Component {
     this.state = {
       name: '',
       date: '',
-      length_of_stay:''
+      length_of_stay:'',
+      places_to_visit: ''
     }
   }
 
@@ -21,7 +22,8 @@ class Edit extends React.Component {
               this.setState({
                 name: response.data.name,
                 date: response.data.date,
-                length_of_stay: response.data.length_of_stay });
+                length_of_stay: response.data.length_of_stay,
+                places_to_visit: response.data.places_to_visit});
           })
           .catch( (error)=>
               console.log(error)
@@ -41,7 +43,8 @@ class Edit extends React.Component {
     const obj = {
       name: this.state.name,
       date: this.state.date,
-      length_of_stay: this.state.length_of_stay
+      length_of_stay: this.state.length_of_stay,
+      places_to_visit: this.state.places_to_visit
     };
     console.log(obj);
     axios.put(`${baseUrl}/trips/`+this.props.match.params.id, obj)
@@ -79,6 +82,15 @@ class Edit extends React.Component {
                       className="form-control"
                       value={this.state.length_of_stay}
                       id="length_of_stay"
+                      onChange={this.handleChange}
+                      />
+                </div>
+                <div className="form-group">
+                    <label>Places To Visit </label>
+                    <input type="text"
+                      className="form-control"
+                      value={this.state.places_to_visit}
+                      id="places_to_visit"
                       onChange={this.handleChange}
                       />
                 </div>
