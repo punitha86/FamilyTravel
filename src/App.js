@@ -105,7 +105,7 @@ componentDidMount() {
   //console.log(window);
   //////spent 3 days finding this line......./////////////////////
   ///Thank you GOD!!!!!///////
-    axios.default.withCredentials = true;
+    axios.defaults.withCredentials = true;
     ////////////////////////////////////////
     ////////////////////////////////////////
     axios.get(`${baseUrl}/auth/user`).then(response => {
