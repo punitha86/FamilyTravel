@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-let  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+let  baseUrl = 'https://familytravel.herokuapp.com';
 class SignupForm extends Component {
 	constructor() {
 		super()
