@@ -6,7 +6,7 @@ let baseUrl = '';
 // if (process.env.NODE_ENV === 'development') {
 //   baseUrl = 'http://localhost:4500'
 // } else {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+  baseUrl = 'https://familytravel.herokuapp.com';
 // }
 class Login extends React.Component {
 

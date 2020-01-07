@@ -7,7 +7,7 @@ import axios from 'axios';
 import {
   withRouter
 } from 'react-router-dom';
-let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+let baseUrl = 'https://familytravel.herokuapp.com';
 //let baseUrl = 'http://localhost:4500';
 class Forms extends React.Component {
   // ==============
