@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Redirect } from 'react-router-dom';
 let baseUrl = 'http://localhost:4500'
 
 
@@ -46,13 +46,14 @@ class Edit extends React.Component {
       length_of_stay: this.state.length_of_stay,
       places_to_visit: this.state.places_to_visit
     };
-    console.log(obj);
+    //console.log(obj);
     axios.put(`${baseUrl}/trips/`+this.props.match.params.id, obj)
         .then(res => {console.log(res.data);
         this.props.history.push('/main');});
   }
 
   render() {
+    if(this.props.user!==null)
     return (
         <div style={{ marginTop: 10 }}>
             <h3 align="center">Update Trip</h3>
@@ -102,6 +103,11 @@ class Edit extends React.Component {
             </form>
         </div>
     )
+    else {
+      console.log("redirecting");
+     return <Redirect to={{ pathname: '/' }} />
+    }
+
   }
 }
 

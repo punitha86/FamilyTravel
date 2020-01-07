@@ -12,12 +12,8 @@ import Button from 'react-bootstrap/Button';
 // } else {
   //
 // }
-let baseUrl = 'http://localhost:4500';
-//let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
-
-
-
-
+//let baseUrl = 'http://localhost:4500';
+let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 
 
 ////populating the trips////////////////////////////

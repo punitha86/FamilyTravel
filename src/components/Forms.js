@@ -1,12 +1,14 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import { Redirect } from 'react-router-dom';
+
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {
   withRouter
 } from 'react-router-dom';
-//let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
-let baseUrl = 'http://localhost:4500';
+let baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+//let baseUrl = 'http://localhost:4500';
 class Forms extends React.Component {
   // ==============
   // STATE
@@ -81,6 +83,7 @@ class Forms extends React.Component {
 };
 
   render () {
+    if(this.props.user!==null)
    return (
      <div className="container">
     <Form onSubmit={this.handleSubmit}>
@@ -131,9 +134,13 @@ class Forms extends React.Component {
         Submit
       </Button>
     </Form>
-​
     </div>
+   )
+   else {
+     console.log("redirecting");
+    return <Redirect to={{ pathname: '/' }} />
+   }
 
-   )}
+ }
 }
 export default withRouter(Forms)

@@ -6,13 +6,14 @@ import Forms from './components/Forms.js';
 import Login from './components/Login.js';
 import Edit from './components/Edit.js';
 import Header from './components/Header.js';
-import Image_upload from './components/Image_upload.js';
-
 import Main from './components/Main.js';
 import Home from './components/Home.js';
 import { Redirect } from 'react-router-dom';
 import SignupForm from './components/SignupForm.js';
 import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+
 import axios from 'axios';
 // =============================
 // COMPONENT CLASS
@@ -29,45 +30,55 @@ if (process.env.NODE_ENV === 'development') {
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
-      <>
-      <Nav variant="tabs" defaultActiveKey="/home">
+      <Container>
+      <Navbar bg="primary" variant="dark">
+      <Nav  defaultActiveKey="/home">
         <Nav.Item>
-          <Nav.Link href="/">Home</Nav.Link>
+        <Link className="links" to={'/'} >
+          Home
+        </Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link><Link to={'/form'} >
+          <Link className="links" to={'/form'} >
             Create Trips
-          </Link></Nav.Link>
+          </Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link><Link to={'/main'}>Trips</Link></Nav.Link>
+          <Link  className="links" to={'/main'}>Trips</Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link><Link to={'/login'} onClick={props._logout}>
+          <Link  className="links" to={'/login'} onClick={props._logout}>
             Logout
-          </Link></Nav.Link>
+          </Link>
         </Nav.Item>
       </Nav>
-      </>
+        </Navbar>
+      </Container>
 		)
 	} else {
 		return(
       <>
-        <Nav variant="tabs" defaultActiveKey="/home">
+      <Container>
+      <Navbar bg="primary" variant="dark">
+        <Nav defaultActiveKey="/">
           <Nav.Item>
-            <Nav.Link href="/">Home</Nav.Link>
+          <Link className="links" to="/" >
+            Home
+          </Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link><Link to="/login" >
+            <Link className="links" to="/login" >
               Login
-            </Link></Nav.Link>
+            </Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link><Link to="/signup">
+            <Link className="links" to="/signup">
               Sign Up
-            </Link></Nav.Link>
+            </Link>
           </Nav.Item>
         </Nav>
+        </Navbar>
+      </Container>
       </>
 		)
 	}
@@ -161,45 +172,14 @@ _login=(username, password)=>{
 							_login={this._login}
 						/>} />
             <Route exact path="/" render={() => <Home user={this.state.user} />} />
-            <Route exact path="/signup" component={SignupForm} />
+            <Route exact path='/signup' component={SignupForm} />
             <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
             <Route path='/main' component={ ()=> <Main user={this.state.user} />} />
-            <Route exact path='/edit/:id' component={ Edit } />
-            <Route exact path='/image' component={ Image_upload } />
+            <Route exact path='/edit/:id' component={ ()=> <Edit user={this.state.user} />} />
+
         </Switch>
       </div>
-      {/*  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to={'/'} className="navbar-brand">Family Travel</Link>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-                <Link to={'/'} className="nav-link">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={'/form'} className="nav-link">Create Trips</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={'/main'} className="nav-link">Trips</Link>
-            </li>
 
-            {this.state.user_id===''?
-            <li className="nav-item">
-              <a  href="http://localhost:4500/auth/google">
-              <button>Login with Google+</button>
-              </a>
-            </li>
-            :
-            <li className="nav-item">
-              <a  href="http://localhost:4500/auth/google">
-              <button>Logout</button>
-              </a>
-            </li>
-
-            }
-
-            </ul>
-          </div>
-        </nav>*/}
       </Router>
 
     );

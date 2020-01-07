@@ -15,14 +15,20 @@ code {
 #jumboTitle {
     text-align: right;
     padding-right: 10vw;
-    padding-top: 5vh;
+    padding-top: 15vh;
     width:100vw;
-    height:30vh;
+    height:50vh;
     font-size: 70px;
     color:white;
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
     background-image: url('https://www.itl.cat/pngfile/big/209-2095289_laguna-beach-california-wallpaper-high-resolution-travel-images.jpg');
     background-size:cover;
+
+}
+.links{
+  color: white;
+  text-decoration: none;
+  padding:10px;
 
 }
