@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-
+let  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
 class SignupForm extends Component {
 	constructor() {
 		super()
@@ -21,7 +21,7 @@ class SignupForm extends Component {
 		event.preventDefault();
 		console.log("iside submit");
 		axios
-			.post('https://familytravel.herokuapp.com/auth/signup', {
+			.post(baseUrl+'/auth/signup', {
 				username: this.state.username,
 				password: this.state.password
 			})
