@@ -22,7 +22,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://localhost:4500'
 } else {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com';
+  baseUrl = 'https://familytravel.herokuapp.com';
 }
 
 ///////////header links based on logged in status
@@ -105,7 +105,7 @@ componentDidMount() {
   //console.log(window);
   //////spent 3 days finding this line......./////////////////////
   ///Thank you GOD!!!!!///////
-    axios.defaults.withCredentials = true;
+    axios.withCredentials = true;
     ////////////////////////////////////////
     ////////////////////////////////////////
     axios.get(`${baseUrl}/auth/user`).then(response => {

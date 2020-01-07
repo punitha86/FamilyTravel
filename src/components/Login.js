@@ -60,7 +60,7 @@ class Login extends React.Component {
   						<button onClick={this.handleSubmit}>Login</button>
   					</form>
 
-  						<a href="https://cors-anywhere.herokuapp.com/https://familytravel.herokuapp.com/auth/google"><Button variant="primary" >
+  						<a href="https://familytravel.herokuapp.com/auth/google"><Button variant="primary" >
               Login with Google+
   					</Button></a>
   				</div>
