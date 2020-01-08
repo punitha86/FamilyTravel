@@ -40,6 +40,7 @@ class Login extends React.Component {
   			return <Redirect to={{ pathname: this.state.redirectTo }} />
   		} else {
   			return (
+          <div className="container">
   				<div className="LoginForm">
   					<h1>Login form</h1>
   					<form>
@@ -50,6 +51,7 @@ class Login extends React.Component {
   							value={this.state.username}
   							onChange={this.handleChange}
   						/>
+              <br/>
   						<label htmlFor="password">Password: </label>
   						<input
   							type="password"
@@ -57,13 +59,17 @@ class Login extends React.Component {
   							value={this.state.password}
   							onChange={this.handleChange}
   						/>
-  						<button onClick={this.handleSubmit}>Login</button>
+              <br/>
+  						<button variant="primary"  onClick={this.handleSubmit}>Login</button>
+              <br/>
   					</form>
 
   						<a href="https://familytravel.herokuapp.com/auth/google"><Button variant="primary" >
               Login with Google+
   					</Button></a>
   				</div>
+          </div>
+
   			)
   		}
   	}

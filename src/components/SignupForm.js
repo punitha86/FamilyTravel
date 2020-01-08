@@ -42,6 +42,7 @@ class SignupForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
+			<div className="container">
 			<div className="SignupForm">
 				<h1>Signup form</h1>
 				<label htmlFor="username">Username: </label>
@@ -51,6 +52,7 @@ class SignupForm extends Component {
 					value={this.state.username}
 					onChange={this.handleChange}
 				/>
+				<br/>
 				<label htmlFor="password">Password: </label>
 				<input
 					type="password"
@@ -58,6 +60,7 @@ class SignupForm extends Component {
 					value={this.state.password}
 					onChange={this.handleChange}
 				/>
+				<br/>
 				<label htmlFor="confirmPassword">Confirm Password: </label>
 				<input
 					type="password"
@@ -65,7 +68,10 @@ class SignupForm extends Component {
 					value={this.state.confirmPassword}
 					onChange={this.handleChange}
 				/>
+				<br/>
 				<button onClick={this.handleSubmit}>Sign up</button>
+				<br/>
+			</div>
 			</div>
 		)
 	}
