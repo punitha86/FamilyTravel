@@ -175,7 +175,8 @@ _login=(username, password)=>{
             <Route exact path='/signup' component={SignupForm} />
             <Route exact path='/form' render={() => <Forms user={this.state.user}/>}/>
             <Route path='/main' component={ ()=> <Main user={this.state.user} />} />
-            <Route exact path='/edit/:id' component={ ()=> <Edit user={this.state.user} />} />
+            <Route exact path='/edit/:id' component=<Edit/>
+            />
 
         </Switch>
       </div>
