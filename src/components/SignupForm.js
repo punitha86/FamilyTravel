@@ -69,7 +69,7 @@ class SignupForm extends Component {
 					onChange={this.handleChange}
 				/>
 				<br/>
-				<button onClick={this.handleSubmit}>Sign up</button>
+				<button variant="primary" onClick={this.handleSubmit}>Sign up</button>
 				<br/>
 			</div>
 			</div>

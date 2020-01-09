@@ -17,7 +17,8 @@ class Edit extends React.Component {
   }
 
   componentDidMount() {
-      axios.get(`${baseUrl}/trips/`+this.props.match.params.id)
+    console.log(this.props);
+      axios.get(`${baseUrl}/trips/`+this.props.params.id)
           .then(response => {
               this.setState({
                 name: response.data.name,
@@ -46,8 +47,8 @@ class Edit extends React.Component {
       length_of_stay: this.state.length_of_stay,
       places_to_visit: this.state.places_to_visit
     };
-    //console.log(obj);
-    axios.put(`${baseUrl}/trips/`+this.props.match.params.id, obj)
+    console.log("inside edit",obj);
+    axios.put(`${baseUrl}/trips/`+this.props.params.id, obj)
         .then(res => {console.log(res.data);
         this.props.history.push('/main');});
   }
