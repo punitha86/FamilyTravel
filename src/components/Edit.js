@@ -18,17 +18,17 @@ class Edit extends React.Component {
 
   componentDidMount() {
     console.log(this.props.match.params.id);
-      axios.get(`${baseUrl}/trips/`+this.props.match.params.id)
-          .then(response => {
-              this.setState({
-                name: response.data.name,
-                date: response.data.date,
-                length_of_stay: response.data.length_of_stay,
-                places_to_visit: response.data.places_to_visit});
-          })
-          .catch( (error)=>
-              console.log(error)
-          )
+      // axios.get(`${baseUrl}/trips/`+this.props.match.params.id)
+      //     .then(response => {
+      //         this.setState({
+      //           name: response.data.name,
+      //           date: response.data.date,
+      //           length_of_stay: response.data.length_of_stay,
+      //           places_to_visit: response.data.places_to_visit});
+      //     })
+      //     .catch( (error)=>
+      //         console.log(error)
+      //     )
     }
 
     // ==============
